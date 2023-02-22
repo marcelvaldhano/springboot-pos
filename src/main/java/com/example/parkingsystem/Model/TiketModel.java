@@ -20,7 +20,7 @@ import java.util.Date;
 public class TiketModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTiket", nullable = false)
+    @Column(name = "id_tiket", nullable = false)
     private Long idTiket;
 
     @NotNull
@@ -49,8 +49,7 @@ public class TiketModel implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "plat_kendaraan", referencedColumnName = "idKendaraan", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private KendaraanModel plat_kendaraan;
+    private KendaraanModel kendaraan;
 
     public Long getIdTiket() {
         return idTiket;
@@ -98,6 +97,30 @@ public class TiketModel implements Serializable {
 
     public long getTotal() {
         return total;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public String getMetodePembayaran() {
+        return metodePembayaran;
+    }
+
+    public void setMetodePembayaran(String metodePembayaran) {
+        this.metodePembayaran = metodePembayaran;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
+    }
+
+    public KendaraanModel getKendaraan() {
+        return kendaraan;
+    }
+
+    public void setKendaraan(KendaraanModel kendaraan) {
+        this.kendaraan = kendaraan;
     }
 
     private void setDuration(LocalDateTime checkInTime, LocalDate checkOutTime) {

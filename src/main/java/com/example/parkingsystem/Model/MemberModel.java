@@ -20,6 +20,7 @@ public class MemberModel implements Serializable {
     private Long idMember;
 
     @NotNull
+    @Size(max = 255)
     @Column(name = "namaMember", nullable = false)
     private String namaMember;
 
@@ -29,11 +30,12 @@ public class MemberModel implements Serializable {
     @Column(name = "expiredDate", nullable = false)
     private Date expireDate;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_kendaraan",referencedColumnName = "idKendaraan")
+    @OnDelete(action=OnDeleteAction.CASCADE)
+    @Size(max=12)
+    private KendaraanModel kendaraan;
 
-    @OneToOne(mappedBy = "id_member", fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private KendaraanModel id_Kendaraan;
 
     public Long getIdMember() {
         return idMember;
@@ -59,11 +61,11 @@ public class MemberModel implements Serializable {
         this.expireDate = expireDate;
     }
 
-    public KendaraanModel getId_Kendaraan() {
-        return id_Kendaraan;
+    public KendaraanModel getKendaraan() {
+        return kendaraan;
     }
 
-    public void setId_Kendaraan(KendaraanModel id_Kendaraan) {
-        this.id_Kendaraan = id_Kendaraan;
+    public void setKendaraan(KendaraanModel kendaraan) {
+        this.kendaraan = kendaraan;
     }
 }

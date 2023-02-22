@@ -22,20 +22,21 @@ public class KendaraanModel implements Serializable {
     @Column(name = "jenisKendaraan", nullable = false)
     private String jenisKendaraan;
 
+
     @NotNull
     @Column(name = "statusKendaraan", nullable = false)
     private String statusKendaraan;
 
+    @OneToMany(mappedBy = "kendaraan",fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private List<MemberModel> listMember;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_member", referencedColumnName = "idMember")
-    @Size(max=12)
-    private MemberModel id_member;
-
-    @OneToMany(mappedBy = "plat_kendaraan", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "kendaraan", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private List<TiketModel> listTiket;
+
 
     public String getIdKendaraan() {
         return idKendaraan;
@@ -61,12 +62,13 @@ public class KendaraanModel implements Serializable {
         this.statusKendaraan = statusKendaraan;
     }
 
-    public MemberModel getId_member() {
-        return id_member;
+
+    public List<MemberModel> getListMember() {
+        return listMember;
     }
 
-    public void setId_member(MemberModel id_member) {
-        this.id_member = id_member;
+    public void setListMember(List<MemberModel> listMember) {
+        this.listMember = listMember;
     }
 
     public List<TiketModel> getListTiket() {
@@ -76,5 +78,4 @@ public class KendaraanModel implements Serializable {
     public void setListTiket(List<TiketModel> listTiket) {
         this.listTiket = listTiket;
     }
-
 }

@@ -10,7 +10,7 @@ margin-top:10px;
 .container {
   display: flex;
   margin-bottom: 20px;
-  height:85vh;
+  height:75vh;
   weight:100vh;
 }
 h1{
@@ -49,4 +49,14 @@ font-size:18px
 }
 .btn{
     margin-top:20px;
+}
+.btn-batal{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin:auto;
+}
+.batal{
+color: #fff;
+background-color: #A0A1A4;
 }

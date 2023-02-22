@@ -17,5 +17,9 @@ public class TiketServiceImpl implements TiketService{
     public void addTiket(TiketModel tiket){
         tiketDb.save(tiket);
     }
+    @Override
+    public void changeStatus(TiketModel tiket){
+        tiket.setStatusTiket("PAID");
+    }
 
 }
