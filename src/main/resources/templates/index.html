@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>POS Parking System Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+<body>
+<div class="banner">
+    <h1>Welcome To Pos Parking System</h1>
+</div>
+<div class="button-container">
+    <a th:href="@{/checkin}">
+        <button th:href="@{/checkin}">Check-In</button>
+    </a>
+    <a th:href="@{/checkout}">
+        <button th:href="@{/checkout}">Check-Out</button>
+    </a>
+</div>
+</body>
+</html>
