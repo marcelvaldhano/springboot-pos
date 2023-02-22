@@ -1,7 +1,11 @@
 package com.example.parkingsystem.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,7 +27,6 @@ public class TiketModel implements Serializable {
     @Column(name = "checkInTime", nullable = false)
     private LocalDateTime checkInTime;
 
-
     @Column(name = "checkOutTime")
     private LocalDateTime checkOutTime;
 
@@ -42,6 +45,12 @@ public class TiketModel implements Serializable {
 
     @Column(name = "total")
     private long total;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "plat_kendaraan", referencedColumnName = "idKendaraan", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private KendaraanModel plat_kendaraan;
 
     public Long getIdTiket() {
         return idTiket;
@@ -97,10 +106,6 @@ public class TiketModel implements Serializable {
     private void setTotal(Long duration,Long diskon){
         this.total=duration*3000*(100-diskon);
     }
-
-
-
-
 
 
 }
