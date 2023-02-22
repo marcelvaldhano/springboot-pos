@@ -33,6 +33,9 @@ public class TiketModel implements Serializable {
     @Column(name = "diskon")
     private long diskon;
 
+    @Column(name = "metodePembayaran")
+    private String metodePembayaran;
+
     @NotNull
     @Column(name = "statusTiket",nullable = false)
     private String statusTiket;
