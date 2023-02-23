@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CheckOutController {
     @GetMapping("/checkout")
     public String showCheckOutForm(Model model) {
-        System.out.println("Marcel");
         return "checkout";
     }
 }

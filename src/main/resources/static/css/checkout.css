@@ -1,0 +1,67 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.banner{
+margin-top:10px;
+ height:10vh;
+}
+.container {
+  display: flex;
+  margin-bottom: 20px;
+  height:75vh;
+  weight:100vh;
+}
+h1{
+    text-align:center;
+    margin:auto;
+    margin-top:10px;
+}
+
+.left {
+    padding-left: 10px;
+    flex: 1;
+    margin-right: 10px;
+    weight:50%;
+}
+
+.right {
+padding-left: 20px;
+  flex: 1;
+  margin-left: 10px;
+  weight:50%;
+}
+label{
+    margin-top: 20px;
+
+}
+#clock {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+}
+#location{
+margin-top:10px;
+font-size:18px
+    font-size: 18px;
+  text-align: center;
+}
+.btn{
+    margin-top:20px;
+}
+.btn-batal{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin:auto;
+}
+.batal{
+color: #fff;
+background-color: #A0A1A4;
+}
+.error-message{
+    font-size: 24px;
+    color: red;
+    text-align: left;
+}

@@ -64,11 +64,9 @@ public class CheckInController {
             }
             else{
                 KendaraanModel kendaraanUpdated=kendaraanService.getKendaraanByIdKendaraan(platKendaraan);
-
                 LocalDateTime checkinTime = LocalDateTime.now();
                 kendaraanUpdated.setStatusKendaraan("On Going");
                 kendaraanService.updateKendaraan(kendaraanUpdated);
-
                 tiket.setStatusTiket("Unpaid");
                 tiket.setCheckInTime(checkinTime);
                 tiket.setKendaraan(kendaraanUpdated);
@@ -77,10 +75,6 @@ public class CheckInController {
                 return "checkinsuccess";
             }
         }
-
-//        tiket.setKendaraan();
-
-
         return "checkin";
     }
 
