@@ -15,7 +15,7 @@
 </div>
 <div class="container">
     <div class="left">
-        <form th:action="@{/checkout}"th:object="${checkin}" method="POST">
+        <form th:action="@{/checkout}"th:object="${checkout}" method="POST">
             <div th:if="${error} != null">
                 <h1 class="error-message"><span th:text="${error}"></span></h1>
             </div>

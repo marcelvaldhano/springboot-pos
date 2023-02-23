@@ -1,5 +1,6 @@
 package com.example.parkingsystem.Service;
 
+import com.example.parkingsystem.Model.KendaraanModel;
 import com.example.parkingsystem.Model.TiketModel;
 import com.example.parkingsystem.repository.TiketDb;
 import jakarta.transaction.Transactional;
@@ -20,6 +21,14 @@ public class TiketServiceImpl implements TiketService{
     @Override
     public void changeStatus(TiketModel tiket){
         tiket.setStatusTiket("PAID");
+    }
+    @Override
+    public TiketModel getTiketByIdTiket(Long noTiket){
+        return tiketDb.findByIdTiket(noTiket);
+    }
+    @Override
+    public TiketModel getTiketByKendaraan(KendaraanModel kendaraanModel){
+        return tiketDb.getTiketByKendaraan(kendaraanModel);
     }
 
 }
