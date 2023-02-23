@@ -1,5 +1,6 @@
 package com.example.parkingsystem.Controller;
-import ch.qos.logback.core.model.Model;
+//import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 import com.example.parkingsystem.Model.KendaraanModel;
 import com.example.parkingsystem.Model.TiketModel;
 import com.example.parkingsystem.Service.KendaraanService;
@@ -42,7 +43,7 @@ public class CheckInController {
     @PostMapping("/checkin/add")
     public String addCheckin(@ModelAttribute TiketModel tiket,
             @RequestParam("platKendaraan") String platKendaraan,
-                             @RequestParam("jenisKendaraan") String jenisKendaraan){
+                             @RequestParam("jenisKendaraan") String jenisKendaraan, Model model){
         KendaraanModel kendaraanModel=new KendaraanModel();
         if(kendaraanService.getKendaraanByIdKendaraan(platKendaraan)==null){
             kendaraanModel.setIdKendaraan(platKendaraan);
@@ -54,6 +55,7 @@ public class CheckInController {
             tiket.setCheckInTime(checkinTime);
             tiket.setKendaraan(kendaraanModel);
             tiketService.addTiket(tiket);
+            model.addAttribute("idTiket",tiket.getIdTiket());
             return "checkinsuccess";
         }
         else{
