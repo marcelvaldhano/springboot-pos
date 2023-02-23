@@ -1,15 +1,34 @@
 package com.example.parkingsystem.Controller;
 import ch.qos.logback.core.model.Model;
+import com.example.parkingsystem.Model.KendaraanModel;
 import com.example.parkingsystem.Model.TiketModel;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.example.parkingsystem.Service.KendaraanService;
+import com.example.parkingsystem.Service.TiketService;
+import com.example.parkingsystem.repository.KendaraanDb;
+import com.example.parkingsystem.repository.TiketDb;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 public class CheckInController {
+    @Autowired
+    private TiketDb tiketDb;
+
+    @Autowired
+    private KendaraanDb kendaraanDb;
+
+    @Autowired
+    private TiketService tiketService;
+
+    @Autowired
+    private KendaraanService kendaraanService;
+
     @RequestMapping("/")
     public String home(Model model) {
         return "index";
@@ -21,9 +40,29 @@ public class CheckInController {
     }
 
     @PostMapping("/checkin/add")
-    public String addPesananSubmit(
-            @ModelAttribute TiketModel tiketModel, Model model
-    ) {
+    public String addCheckin(@ModelAttribute TiketModel tiket,
+            @RequestParam("platKendaraan") String platKendaraan,
+                             @RequestParam("jenisKendaraan") String jenisKendaraan){
+        KendaraanModel kendaraanModel=new KendaraanModel();
+        if(kendaraanService.getKendaraanByIdKendaraan(platKendaraan)==null){
+            kendaraanModel.setIdKendaraan(platKendaraan);
+            kendaraanModel.setJenisKendaraan(jenisKendaraan);
+            kendaraanModel.setStatusKendaraan("On Going");
+            kendaraanService.addKendaraan(kendaraanModel);
+            LocalDateTime checkinTime = LocalDateTime.now();
+            tiket.setStatusTiket("Unpaid");
+            tiket.setCheckInTime(checkinTime);
+            tiket.setKendaraan(kendaraanModel);
+            tiketService.addTiket(tiket);
+            return "checkinsuccess";
+        }
+        else{
+            System.out.println("Sudah Ada");
+        }
+
+//        tiket.setKendaraan();
+
+
         return "checkin";
     }
 
