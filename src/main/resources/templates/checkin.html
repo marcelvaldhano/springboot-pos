@@ -16,6 +16,9 @@
 <div class="container">
     <div class="left">
         <form th:action="@{/checkin/add}"th:object="${checkin}" method="POST">
+            <div th:if="${error} != null">
+                <h1 class="error-message"><span th:text="${error}"></span></h1>
+            </div>
             <label>Plat Kendaraan</label>
             <input type="text" class="form-control"
                    name="platKendaraan" maxlength="10"

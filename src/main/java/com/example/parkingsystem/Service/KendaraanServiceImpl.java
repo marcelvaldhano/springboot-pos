@@ -19,6 +19,13 @@ public class KendaraanServiceImpl implements KendaraanService{
     @Override
     public void addKendaraan(KendaraanModel kendaraanModel) {
         kendaraanDb.save(kendaraanModel);
-
+    }
+    @Override
+    public String getStatusKendaraanByIdKendaraan(String idKendaraan){
+        return kendaraanDb.findStatusByIdKendaraan(idKendaraan);
+    }
+    @Override
+    public KendaraanModel updateKendaraan(KendaraanModel kendaraanUpdated){
+        return kendaraanDb.save(kendaraanUpdated);
     }
 }

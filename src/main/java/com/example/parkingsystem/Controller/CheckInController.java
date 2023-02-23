@@ -58,8 +58,24 @@ public class CheckInController {
             model.addAttribute("idTiket",tiket.getIdTiket());
             return "checkinsuccess";
         }
-        else{
-            System.out.println("Sudah Ada");
+        else if(kendaraanService.getKendaraanByIdKendaraan(platKendaraan)!=null){
+            if(kendaraanService.getKendaraanByIdKendaraan(platKendaraan).getStatusKendaraan().equals("On Going")){
+                model.addAttribute("error","Maaf plat yang anda masukkan masih dalam status on going");
+            }
+            else{
+                KendaraanModel kendaraanUpdated=kendaraanService.getKendaraanByIdKendaraan(platKendaraan);
+
+                LocalDateTime checkinTime = LocalDateTime.now();
+                kendaraanUpdated.setStatusKendaraan("On Going");
+                kendaraanService.updateKendaraan(kendaraanUpdated);
+
+                tiket.setStatusTiket("Unpaid");
+                tiket.setCheckInTime(checkinTime);
+                tiket.setKendaraan(kendaraanUpdated);
+                tiketService.addTiket(tiket);
+                model.addAttribute("idTiket",tiket.getIdTiket());
+                return "checkinsuccess";
+            }
         }
 
 //        tiket.setKendaraan();

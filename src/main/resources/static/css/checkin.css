@@ -60,3 +60,8 @@ font-size:18px
 color: #fff;
 background-color: #A0A1A4;
 }
+.error-message{
+    font-size: 24px;
+    color: red;
+    text-align: left;
+}

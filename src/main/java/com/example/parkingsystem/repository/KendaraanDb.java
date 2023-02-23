@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface KendaraanDb extends JpaRepository<KendaraanModel,Long> {
     KendaraanModel findByIdKendaraan(String idKendaraan);
+    String findStatusByIdKendaraan(String idKendaraan);
 }
