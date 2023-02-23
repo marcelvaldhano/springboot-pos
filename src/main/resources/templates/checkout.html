@@ -15,6 +15,7 @@
 </div>
 <div class="container">
     <div class="left">
+        <div th:if="${payment} == null">
         <form th:action="@{/checkout}"th:object="${checkout}" method="POST">
             <div th:if="${error} != null">
                 <h1 class="error-message"><span th:text="${error}"></span></h1>
@@ -22,15 +23,38 @@
             <label>Plat Kendaraan</label>
             <input type="text" class="form-control"
                    name="platKendaraan" maxlength="10"
-                   placeholder="Masukan Nomor Plat Yang Ingin Anda Bayar" required>
+                   placeholder="Masukan Nomor Plat Yang Ingin Anda Inquiry" required>
             <label>Nomor Tiket</label>
             <input type="text" class="form-control"
                    name="noTiket" maxlength="10"
-                   placeholder="Masukan Nomor Tiket Yang Ingin Anda Bayar (Hanya Nomor)"
+                   placeholder="Masukan Nomor Tiket Yang Ingin Anda Inquiry (Hanya Nomor)"
                    pattern="[0-9]*" title="Please enter only numbers"
                    required>
-            <button type="submit" class="btn btn-primary">Checkout Ticket</button>
+            <button type="submit" class="btn btn-primary">Inquiry Ticket</button>
         </form>
+        </div>
+        <div th:if="${payment} != null">
+            <form th:action="@{/checkoutreceipt}"th:object="${tiket}" method="POST">
+                <div th:if="${payment} != null">
+                    <input type="hidden" name="platKendaraan" th:value="${platKendaraan}" />
+                    <input type="hidden" name="noTiket" th:value="${noTiket}" />
+                    <input type="hidden" name="checkinTime" th:value="${checkinTime}" />
+                    <input type="hidden" name="checkoutTime" th:value="${checkoutTime}" />
+                    <input type="hidden" name="duration" th:value="${duration}" />
+                    <input type="hidden" name="diskon" th:value="${diskon}" />
+                    <input type="hidden" name="total" th:value="${total}" />
+                    <div class="informasi">Informasi</div>
+                    <div><p class="plat">Plat Kendaraan: <span th:text="${platKendaraan}"></span></p></div>
+                    <div><p class="noTiket">No Tiket: <span th:text="${noTiket}"></span></p></div>
+                    <div><p class="checkinTime">Check-In Time: <span th:text="${checkinTime}"></span></p></div>
+                    <div><p class="checkoutTime">Check-Out Time: <span th:text="${checkoutTime}"></span></p></div>
+                    <div><p class="duration">Durasi: <span th:text="${duration}"></span> Jam</p></div>
+                    <div><p class="diskon">Diskon: <span th:text="${diskon}"></span></p></div>
+                    <div><p class="total">Total: <span th:text="${total}"></span></p></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Pay Tiket</button>
+            </form>
+        </div>
     </div>
     <div class="right">
         <div id="clock"></div>
@@ -47,8 +71,6 @@
                 updateClock();
                 setInterval(updateClock, 1000);
             </script>
-
-
         </div>
     </div>
 

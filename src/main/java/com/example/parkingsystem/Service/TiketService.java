@@ -8,6 +8,7 @@ public interface TiketService {
 //    TiketModel updateTiket(TiketModel tiket);
 //    TiketModel getTiketByIdTiket(Long idTiket);
     void changeStatus(TiketModel tiket);
+    TiketModel updateTiket(TiketModel tiket);
     TiketModel getTiketByIdTiket(Long noTiket);
     TiketModel getTiketByKendaraan(KendaraanModel kendaraanModel);
 

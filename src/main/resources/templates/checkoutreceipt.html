@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout Receipt</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/checkoutreceipt.css}" />
+</head>
+<body>
+<div class="banner">
+    <h1>Your Ticket Transaction Successfully </h1>
+</div>
+<div class="banner">
+    <h1> Here is your receipt</h1>
+</div>
+<div><p class="noTiket">No Tiket: <span th:text="${noTiket}"></span></p></div>
+<div><p class="checkinTime">Check-In Time: <span th:text="${checkinTime}"></span></p></div>
+<div><p class="checkoutTime">Check-Out Time: <span th:text="${checkoutTime}"></span></p></div>
+<div><p class="duration">Durasi: <span th:text="${duration}"></span> Jam</p></div>
+<div><p class="diskon">Diskon: <span th:text="${diskon}"></span></p></div>
+<div><p class="total">Total: <span th:text="${total}"></span></p></div>
+<div><p class="status">Status: <span th:text="${status}"></span></p></div>
+<div style="text-align: center; margin-top:10px">
+    <div class="btn-batal">
+        <a class="btn btn-secondary batal" th:href="@{/}">Back to Home</a>
+    </div>
+</div>
+</body>
+</html>

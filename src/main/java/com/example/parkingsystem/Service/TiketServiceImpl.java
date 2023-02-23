@@ -30,5 +30,9 @@ public class TiketServiceImpl implements TiketService{
     public TiketModel getTiketByKendaraan(KendaraanModel kendaraanModel){
         return tiketDb.getTiketByKendaraan(kendaraanModel);
     }
+    @Override
+    public TiketModel updateTiket(TiketModel tiket){
+        return tiketDb.save(tiket);
+    }
 
 }

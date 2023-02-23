@@ -37,15 +37,15 @@ label{
 
 }
 #clock {
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   margin-top: 20px;
 }
 #location{
+font-weight:bold;
 margin-top:10px;
-font-size:18px
-    font-size: 18px;
-  text-align: center;
+font-size:20px;
+text-align: center;
 }
 .btn{
     margin-top:20px;
@@ -65,3 +65,29 @@ background-color: #A0A1A4;
     color: red;
     text-align: left;
 }
+
+.informasi {
+  text-align:center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+
+.plat,
+.noTiket,
+.checkinTime,
+.checkoutTime,
+.duration,
+.diskon,
+.total {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+span {
+  color: blue;
+  font-weight: bold;
+}
+
+
