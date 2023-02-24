@@ -1,0 +1,45 @@
+CREATE TABLE kendaraan (
+    idKendaraan VARCHAR(12) NOT NULL,
+    jenisKendaraan VARCHAR(255) NOT NULL,
+    statusKendaraan VARCHAR(255) NOT NULL,
+    PRIMARY KEY (idKendaraan)
+);
+
+CREATE TABLE member (
+    idMember BIGINT NOT NULL AUTO_INCREMENT,
+    namaMember VARCHAR(255) NOT NULL,
+    expiredDate DATE NOT NULL,
+    id_kendaraan VARCHAR(12),
+    PRIMARY KEY (idMember),
+    CONSTRAINT FK_kendaraan_member FOREIGN KEY (id_kendaraan)
+        REFERENCES kendaraan (idKendaraan)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE tiket (
+    id_tiket BIGINT NOT NULL AUTO_INCREMENT,
+    checkInTime DATETIME NOT NULL,
+    checkOutTime DATETIME,
+    duration BIGINT,
+    diskon BIGINT,
+    metodePembayaran VARCHAR(255),
+    statusTiket VARCHAR(255) NOT NULL,
+    total BIGINT,
+    plat_kendaraan VARCHAR(12) NOT NULL,
+    PRIMARY KEY (id_tiket),
+    CONSTRAINT FK_kendaraan_tiket FOREIGN KEY (plat_kendaraan)
+        REFERENCES kendaraan (idKendaraan)
+        ON DELETE CASCADE
+);
+
+INSERT INTO `kendaraan` (`id_kendaraan`, `jenis_kendaraan`, `status_kendaraan`) VALUES ('B 9811 NJ', 'Motor', 'Free');
+INSERT INTO `kendaraan` (`id_kendaraan`, `jenis_kendaraan`, `status_kendaraan`) VALUES ('B 111 JJ', 'Mobil', 'On Going');
+INSERT INTO `kendaraan` (`id_kendaraan`, `jenis_kendaraan`, `status_kendaraan`) VALUES ('B 312 GW', 'Becak', 'On Going');
+INSERT INTO `kendaraan` (`id_kendaraan`, `jenis_kendaraan`, `status_kendaraan`) VALUES ('B 887 QC', 'Motor', 'Free');
+INSERT INTO `kendaraan` (`id_kendaraan`, `jenis_kendaraan`, `status_kendaraan`) VALUES ('B 769 NJ', 'Motor', 'On Going');
+INSERT INTO `tiket` (`id_tiket`, `check_in_time`, `check_out_time`, `diskon`, `duration`, `metode_pembayaran`, `status_tiket`, `total`, `plat_kendaraan`) VALUES ('1', '2023-02-24 17:19:28.000000', NULL, NULL, NULL, NULL, 'Unpaid', NULL, 'B 9811 NJ');
+INSERT INTO `tiket` (`id_tiket`, `check_in_time`, `check_out_time`, `diskon`, `duration`, `metode_pembayaran`, `status_tiket`, `total`, `plat_kendaraan`) VALUES ('2', '2023-02-22 17:19:28.000000', NULL, NULL, NULL, NULL, 'Paid', NULL, 'B 111 JJ');
+INSERT INTO `tiket` (`id_tiket`, `check_in_time`, `check_out_time`, `diskon`, `duration`, `metode_pembayaran`, `status_tiket`, `total`, `plat_kendaraan`) VALUES ('3', '2023-02-21 17:19:28.000000', NULL, NULL, NULL, NULL, 'Unpaid', NULL, 'B 312 GW');
+INSERT INTO `member` (`id_member`, `expired_date`, `nama_member`, `id_kendaraan`) VALUES ('1', '2023-07-01', 'Marcel', 'B 9811 NJ');
+INSERT INTO `member` (`id_member`, `expired_date`, `nama_member`, `id_kendaraan`) VALUES ('2', '2023-07-29', 'Nurul', 'B 769 NJ');
+INSERT INTO `member` (`id_member`, `expired_date`, `nama_member`, `id_kendaraan`) VALUES ('1', '2023-03-09', 'Budi', 'B 312 GW');
